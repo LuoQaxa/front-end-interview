@@ -10,5 +10,5 @@
 
 2. js中的原型链？
 3. js中如何实现继承？
-  
-4. what's the difference between a variable that is: null, undefined, or undeclared ?
+4. 闭包理解
+5. 
