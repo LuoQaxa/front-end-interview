@@ -86,4 +86,20 @@ ECStack = [
 
 
 // 执行上下文包含了哪些内容
+// 变量对象: 是与执行上下文相关的数据作用域，存储在上下文中定义的变量和函数声明
+{
+  variable-object,
+  scope-chain,
+  this
+}
+// 全局上下文中的变量对象就是全局对象
+// 函数上下文中 activation object AO 表示变量对象 活动对象是在进入函数上下文时刻被创建的，
 
+AO = {
+  arguments: {
+    0: 1,
+    length: 1
+  },
+  a: 1,
+  b: undefined
+}

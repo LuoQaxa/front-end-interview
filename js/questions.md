@@ -11,4 +11,18 @@
 2. js中的原型链？
 3. js中如何实现继承？
 4. 闭包理解
-5. 
+  
+**对象相关**
+5. What's the difference between host objects宿主对象 and native objects内置对象? 
+![类型关系](https://img-blog.csdn.net/20130624221901250?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZm9hbWZsb3dlcg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+6. 创建对象的多种方式和优缺点
+
+**数组相关**
+7. forEach 与 map的区别: forEach 返回值为undefined，map返回为新数组，原数组不改变。
+
+8. JavaScript 中，定义函数时用 var foo = function () {} 和 function foo() 有什么区别？
+
+9. Explain "hoisting"
+10. call 和 apply模拟实现
+11. bind的模拟实现
+12. new的模拟实现
