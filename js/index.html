@@ -7,53 +7,102 @@
   <title>Document</title>
 </head>
 <body>
+  <div id="number">1</div>
+  <input type="text" id="input">
+  <script src='./20.js'></script>
   <script>
-    debugger
-    // var scope = "global scope";
-
-    // function checkscope() {
-    //   console.log(f);
-    //   var scope = "local scope";
-      
-    //   function f() {
-    //     return scope;
+    /**
+   * 
+   * @param {*} func 
+   * @param {*} wait 
+   */
+  // 定时器的方式
+    // function throttle(func, wait) {
+    //   let timeout;
+    //   // 写定时器注意都要清空定时器，不然会有意想不到的bug
+    //   return (...args) => {
+    //     if (!timeout) {
+    //       timeout = setTimeout(() => {
+    //         func(args);
+    //         // 执行之后 
+    //         timeout = null;
+    //       }, wait)
+    //     }
     //   }
-    //   return f;
     // }
-
-    // var foo = checkscope();
-    // foo(); 
-
-
-    // var data = [];
-
-    //   for (var i = 0; i < 3; i++) {
-    //     data[i] = 
-    //       ((i) => {
-    //         return () => {
-    //           console.log(i);
-    //         }
-    //       })(i)
-    //   }
-
-    //   data[0]();
-    //   data[1]();
-    //   data[2](); 
-
-
-    function fun3() {
-        console.log('fun3')
+    // 时间戳的方式
+    // 到了这个时间了才执行
+    function throttle(func, wait) {
+        var context, args;
+        var previous = 0;
+        
+        return function () {
+          var now = +new Date();
+          context = this;
+          args = arguments;
+          if (now - previous > wait) {
+            func.apply(context, args);
+            previous = now;
+          }
+        }
       }
 
-      function fun2() {
-        fun3();
+    function add() {
+      number.innerHTML = 1 + Number(number.innerHTML);
+    }
+
+    function debounce(func, wait, immediate) {
+
+        var timeout;
+
+        return function () {
+          var context = this;
+          var args = arguments;
+
+          if (timeout) clearTimeout(timeout);
+          if (immediate) {
+            // 如果第一次执行之后，第二次触发，定时器就为true，callNOw就为false了
+            var callNow = !timeout;
+            timeout = setTimeout(function () {
+              timeout = null;
+            }, wait)
+            if (callNow) func.apply(context, args)
+          }
+          else {
+            timeout = setTimeout(function () {
+              func.apply(context, args)
+            }, wait);
+          }
+        }
       }
 
-      function fun1() {
-        fun2();
-      }
+    function debounce(func, wait, immediate = true) {
+      let timeout;
+      let isCalled = false;
 
-      fun1();
+      return (...args) => {
+
+        if (immediate && !isCalled) {
+          func()
+          isCalled = true;
+        }
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          func(...args);
+        }, wait);
+      }
+    }
+
+    function log() {
+      console.log(1);
+    }
+    // 需不需要立即执行，就是第一次触发的时候执行，之后要等事件停止wait秒后再执行
+    const input = document.getElementById('input');
+    const dinput = debounce(log, 1000);
+    const throttledAdd = throttle(add, 3000);
+    const number = document.getElementById('number');
+    window.onmousemove = throttledAdd;
+    input.onkeydown = dinput;
   </script>
 </body>
 </html>

@@ -103,3 +103,30 @@ AO = {
   a: 1,
   b: undefined
 }
+
+
+
+function A() {
+  let a = 1
+
+  function B() {
+    console.log(a)
+  }
+  return B
+}
+
+let result = A();
+// A 调用完成之后，会从调用栈中弹出，那为什么变量a还能在调用B的时候，A中的变量是存储在堆里面的。js引擎可以通过逃逸分析辨别出哪些变量需要存储在堆上，哪些需要存储在栈上。
+
+// 这个为什么是一个闭包呢？ 
+for (var i = 1; i <= 5; i++) {
+  ((j) => {
+    setTimeout(function timer() {
+      console.log(j);
+    }, j * 1000);
+  })(i)
+}
+
+
+
+// [一道有趣的面试题: ](https://zhuanlan.zhihu.com/p/25407758)

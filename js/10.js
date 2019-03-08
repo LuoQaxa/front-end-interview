@@ -33,7 +33,7 @@ Function.prototype.call2 = function (context) {
   return result;
 }
 
-bar.call2(foo, 'luoqian' ,23);
+// bar.call2(foo, 'luoqian' ,23);
 
 
 // 2. 模拟实现apply
@@ -49,6 +49,34 @@ Function.prototype.apply2 = function (context, arr) {
   delete context.fn;
   return result;
 }
-bar.apply2(foo, ['apple', 22]);
+// bar.apply2(foo, ['apple', 22]);
 
 
+// 我的实现call和apply，采取es6的，区别在于arguments
+// 1. 改变执行时候的this
+// bar.call(foo, 'lidezhen', 48);
+Function.prototype.call1 = function (obj, ...args) {
+  // 其实就是用bar来 bar foo上面要是添加了bar方法就OK了
+  // 那就是直接foo.bar()的调用 再传参了
+  let context = obj || window;
+  context.fn = this;
+
+  context.fn(...args);
+
+  delete context.fn;
+}
+
+bar.call1(foo, 'lidezhen', 48);
+
+Function.prototype.apply1 = function (obj, args) {
+  // 其实就是用bar来 bar foo上面要是添加了bar方法就OK了
+  // 那就是直接foo.bar()的调用 再传参了
+  let context = obj || window;
+  context.fn = this;
+
+  context.fn(...args);
+
+  delete context.fn;
+}
+
+bar.apply1(foo, ['lidezhen', 48]);

@@ -19,3 +19,5 @@ todo: hover的时候
 2. webpack插件调试
 3. babel插件调试
 4. 源码调试
+
+[参考](https://github.com/hua1995116/debug.git)
