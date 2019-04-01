@@ -46,3 +46,25 @@ if (true) {
   console.log(typeof value); //报错
   let value = "blue"
 }
+
+
+var funcs = [];
+// 循环中的函数
+for (var i = 0; i < 10; i++) {
+  funcs.push((function (value) {
+    return function () {
+      console.log(value)
+    }
+  })(i))
+}
+funcs.forEach((func) => func())
+
+
+
+// 总结：
+// let 和var的区别
+// 1. let 声明的变量具有块级作用域，并且变量声明不会提升， 因为js扫描代码会把let const放到tdz中，访问tdz中的变量会报错，这使得相对安全的typeof操作也有可能报错。
+// 2. let 不能重复声明
+// 3. let const声明的变量不会创建全局属性，也就是不会挂载在window上
+// 4. 在循环有块作用域绑定
+
