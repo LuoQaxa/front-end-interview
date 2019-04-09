@@ -13,7 +13,34 @@ const obj = {
   value: 1
 }
 
-// Symbol.iterator是一个function，并且函数返回的是
-obj[Symbol.iterator] = function name(params) {
+// Symbol.iterator是一个function，并且函数返回的是迭代器或者函数是一个生成器
+obj[Symbol.iterator] = function *() {
+  yield 1;
+  yield 2;
+}
+for (let item of obj) {
+  console.log(item);
   
+}
+
+// 模拟实现for of, 原理是运行
+function forOf(obj, cb) {
+  if (typeof obj[Symbol.iterator] !== "function")
+    throw new TypeError(result + " is not iterable");
+  if (typeof cb !== "function") throw new TypeError("cb must be callable");
+
+  // 不断的调用next
+  let iterator = obj[Symbol.iterator]();
+  let result = iterator.next();
+  while (!result.done) {
+    cb(result.value);
+    result = iterator.next();
+  }
+}
+forOf(obj, console.log)
+
+
+var colors = ["red", "green", "blue"];
+for (let entry of colors.entries()) {
+  console.log(entry)
 }
