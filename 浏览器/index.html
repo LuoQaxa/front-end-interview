@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="parent">
+    <button id="node">点我</button>
+  </div>
+  <!-- 点击子元素会冒泡到父级元素上去 -->
+  <script>
+    var node = document.querySelector('#node');
+    var parent = document.querySelector('#parent');
+    console.log(node);
+    node.addEventListener('click', () => {
+      console.log('node is clicked');
+    })
+    parent.addEventListener('click', () => {
+      console.log('parent is clicked');
+    })
+  </script>
+</body>
+</html>

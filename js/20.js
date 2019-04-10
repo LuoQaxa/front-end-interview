@@ -105,7 +105,7 @@ function debounce(func, wait) {
   return (...args) => {
     // 添加定时器前先将定时器删除，只有等不执行了最后一个定时器就不会被删除就可以执行了
     clearTimeout(timeout);
-    setTimeout(() => {
+    timeout = setTimeout(() => {
       func(...args);
     }, wait);
   }

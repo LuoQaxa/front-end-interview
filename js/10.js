@@ -80,3 +80,6 @@ Function.prototype.apply1 = function (obj, args) {
 }
 
 bar.apply1(foo, ['lidezhen', 48]);
+
+
+
