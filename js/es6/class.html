@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class Person {
+      // 在父类中居然可以调用子类的方法
+      set() {
+        this.render();
+      }
+    } 
+    class Child extends Person {
+      constructor() {
+        super();
+        // Must call super constructor in derived class before accessing 'this' or returning from derived constructor
+        // 因为如果在constructor中用到了父类中的属性
+        // super();
+        this.state = 1;
+        this.name = 'luoqian'
+      }
+      render() {
+        console.log('render run');
+      }
+    }
+
+    const p = new Person()
+    const c = new Child();
+    console.log(c.name);
+    console.log(c.set());
+    console.log(p.set());
+    
+
+    
+    
+  </script>
+</body>
+</html>
