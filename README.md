@@ -12,3 +12,4 @@ vue相关
 下周：chrome调试技能100分
 
 # todo
+// 如果不小心将node_module添加了待提交区,如何取消

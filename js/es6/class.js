@@ -12,8 +12,14 @@ class Person {
     return 'hello, I am ' + this.name;
   }
 }
-var kevin = new Person('Kevin');
+class Child extends Person {
+  sayAge() {
+    console.log('hello, my age is');
+  }
+}
+var kevin = new Child('Kevin');
 kevin.sayHello(); // hello, I am Kevin
+kevin.sayAge(); // hello, my age is.
 
 // 特点
 // 1. 实例属性 以前只能在con中，而现在有提案在类上 
